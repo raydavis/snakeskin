@@ -1,0 +1,42 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Snakeskin</title>
+
+    <base href="/">
+
+    <link href="static/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/css/main.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <script src="/static/lib/angular/angular.js"></script>
+    <script src="/static/lib/angular-route/angular-route.js"></script>
+
+    <script src="/static/js/app.js"></script>
+    <script src="/static/js/routes.js"></script>
+    <script src="/static/js/controllers/tenantDetailController.js"></script>
+    <script src="/static/js/controllers/tenantListController.js"></script>
+    <script src="/static/js/controllers/userDetailController.js"></script>
+    <script src="/static/js/factories/tenantFactory.js"></script>
+    <script src="/static/js/factories/userFactory.js"></script>
+
+    <div class="container-top container">
+      <div class="container-left">
+        <a href="/">SNAKESKIN</a>
+      </div>
+      <div class="container-right">
+        This Pythonic Learning Records Supersphere is powered by <a href="http://flask.pocoo.org/">Flask</a>.
+      </div>
+    </div>
+
+    <div class="container page">
+      <div id="content" class="container main" data-ng-view></div>
+      <hr>
+      <footer class="footer">
+        <div class="container-left" data-ng-include="'/static/img/uc_berkeley_logo.html'"></div>
+        <div class="container-right">&copy; 2017 UC Regents "fiat lux" "go bears"</div>
+      </footer>
+    </div>
+  </body>
+</html>

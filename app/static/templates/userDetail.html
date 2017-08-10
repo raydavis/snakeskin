@@ -1,0 +1,46 @@
+<div class="header-section">
+  <div class="row header-row">
+    <div class="span12 masthead">
+      <h1 class="heading">
+        <a href="/">Home</a> &gt;
+        <a href="/tenant/{{tenant.id}}">{{tenant.name}}</a> &gt;
+        {{user.name}}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="header-push"></div>
+
+<div class="row">
+  <div class="col-sm-6 body-text">
+    <div>
+      <img data-ng-src="{{user.avatar_url}}"></img>
+    </div>
+
+    Email address: <strong>{{user.email_emailaddress}}</strong><br>
+    Gender of record: <strong>{{user.gender_genderofrecord_code}}</strong><br>
+    Birthdate: <strong>{{user.birth_date}}</strong><br>
+    City of residence: <strong>{{user.address_home_city}}</strong><br>
+
+    How about some learning activities?
+    <ul>
+      <li>
+        <a data-ng-click="showUserTopActivities()">Top activity types!</a>
+      </li>
+      <li>
+        <a data-ng-click="showUserTotalActivities()">Activity counts by month!</a>
+      </li>
+      <li>
+        <a data-ng-click="showUserRecentActivities()">Recent activities!</a>
+      </li>
+      <li>
+        <a data-ng-click="showUserDataSources()">Data sources!</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-6" data-ng-if="displayActivity">
+    <h2 data-ng-bind="displayActivity.display"></h2>
+    <pre class="pre-scrollable" data-ng-bind="displayActivity.feed"></pre>
+  </div>
+</div>

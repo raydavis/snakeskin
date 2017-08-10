@@ -1,0 +1,28 @@
+<div class="header-section">
+  <div class="row header-row">
+    <div class="span12 masthead">
+      <h1 class="heading">
+        <a href="/">Home</a> &gt; {{tenant.name}}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="header-push"></div>
+
+<div class="body-text">
+  <div>
+    <ng-pluralize count="tenant.users.length"
+                  when="{'0': 'No users', '1': 'One user', 'other': '{{tenant.users.length}} users'}">
+    </ng-pluralize>
+    on the premises.
+  </div>
+  <div data-ng-if="tenant.users.length">
+    Choose a user:
+    <ul>
+      <li data-ng-repeat="user in tenant.users">
+        <a data-ng-bind="user.name" data-ng-href="/tenant/{{tenant.id}}/user/{{user.id}}"></a>
+      </li>
+    </ul>
+  </div>
+</div>

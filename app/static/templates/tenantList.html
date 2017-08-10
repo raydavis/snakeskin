@@ -1,0 +1,18 @@
+<div class="header-section">
+  <div class="row header-row">
+    <div class="span12 masthead">
+      <h1 class="heading">Home. {{tenants.length}} tenants in the complex.</h1>
+    </div>
+  </div>
+</div>
+
+<div class="header-push"></div>
+
+<div class="body-text">
+  <div>Choose a tenant:</div>
+  <ul>
+    <li data-ng-repeat="tenant in tenants">
+      <a data-ng-bind="tenant.name" data-ng-href="/tenant/{{tenant.id}}"></a>
+    </li>
+  </ul>
+</div>

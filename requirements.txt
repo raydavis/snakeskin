@@ -1,0 +1,6 @@
+Flask
+Flask-SQLAlchemy
+SQLAlchemy
+cx_Oracle
+psycopg2
+requests
