@@ -56,7 +56,7 @@ Now that your virtual environment is activated, you'll use `pip` rather than `pi
 
 Dependencies are installed into `app/static/lib`.
 
-### Create Postgres user and database from schema.sql
+### Create Postgres user and databases
 
 These commands assume your user, database and password are all set to 'snakeskin'; modify as desired (and note you'll need to change your locally configured `SQLALCHEMY_DATABASE_URI`, as described below).
 
@@ -64,14 +64,28 @@ These commands assume your user, database and password are all set to 'snakeskin
 brew install postgresql
 createuser snakeskin --no-createdb --no-superuser --no-createrole --pwprompt
 [Enter (and re-enter) the password: snakeskin]
+
+Create your development database and load the current schema from source control.
+
+```
 createdb snakeskin --owner=snakeskin
 psql snakeskin < scripts/db/schema.sql
+```
+
+Also create a snakeskin_test database for automated test runs. Note that this database does _not_ need the schema preloaded, as this is done automatically on each test run by `tests/conftest.py`.
+
+```
+createdb snakeskin_test --owner=snakeskin
 ```
 
 ### Create local configurations
 
 Canvas configuration goes in the `tenants` table; Postgres and EDO Oracle configuration goes into a local config file (`config/development-local.py`). You'll also need an SSH tunnel set up to talk to EDO Oracle.
 
+If you created local database credentials other than the defaults, you'll need to override SQLALCHEMY_DATABASE_URI in both `development-local.py` and `test-local.py`.
+
 ## Usage
 
 `python run.py` will start a development server on port 5000.
+
+`pytest` will run the test suite.

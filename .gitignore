@@ -4,6 +4,10 @@
 __pycache__
 *.pyc
 
+# Pytest-created directories
+.cache
+.idea
+
 # Front-end dependencies
 app/static/lib
 
