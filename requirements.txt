@@ -3,4 +3,6 @@ Flask-SQLAlchemy
 SQLAlchemy
 cx_Oracle
 psycopg2
+pytest
+pytest-flask
 requests
