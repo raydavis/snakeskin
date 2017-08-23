@@ -1,7 +1,7 @@
 import pytest
 import sqlalchemy.exc
 
-from app.models.tenant import Tenant
+from snakeskin.models.tenant import Tenant
 
 
 class TestTenant:

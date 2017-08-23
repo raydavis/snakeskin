@@ -9,7 +9,7 @@ __pycache__
 .idea
 
 # Front-end dependencies
-app/static/lib
+snakeskin/static/lib
 
 # Local configs
 config/*-local.py

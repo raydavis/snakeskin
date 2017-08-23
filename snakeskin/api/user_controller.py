@@ -1,8 +1,7 @@
 from flask import Blueprint, jsonify
 
-from app import app
-from app.models.tenant import Tenant
-from app.models.user import User
+from snakeskin.models.tenant import Tenant
+from snakeskin.models.user import User
 
 
 user = Blueprint('user', __name__, url_prefix='/api/tenant/<tenant_id>/user/<external_id>')

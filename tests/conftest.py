@@ -1,8 +1,7 @@
 import os
-import pytest
 import subprocess
 
-from app import factory
+from snakeskin import factory
 
 from tests.fixtures.tenants import *
 
