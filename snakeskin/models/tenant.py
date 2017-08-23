@@ -1,6 +1,6 @@
-from app import app, db
-from app.models.base import Base
-from app.proxies import canvas
+from snakeskin import db
+from snakeskin.models.base import Base
+from snakeskin.proxies import canvas
 
 
 """

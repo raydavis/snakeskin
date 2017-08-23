@@ -1,6 +1,6 @@
 import cx_Oracle
 
-from app import app
+from snakeskin import app
 
 
 def get_bio_data(user_id):

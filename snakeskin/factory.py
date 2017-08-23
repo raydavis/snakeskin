@@ -45,8 +45,8 @@ def register_routes(app):
     """Register app routes."""
 
     # Register API routes as blueprints.
-    from app.api.tenant_controller import tenant
-    from app.api.user_controller import user
+    from snakeskin.api.tenant_controller import tenant
+    from snakeskin.api.user_controller import user
     app.register_blueprint(tenant)
     app.register_blueprint(user)
 
@@ -54,4 +54,4 @@ def register_routes(app):
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
     def front_end_route(**kwargs):
-        return make_response(open('app/templates/index.html').read())
+        return make_response(open('snakeskin/templates/index.html').read())

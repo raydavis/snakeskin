@@ -1,8 +1,8 @@
 from sqlalchemy import sql
 
-from app import db
-from app.models.base import Base
-from app.proxies import edo_oracle
+from snakeskin import db
+from snakeskin.models.base import Base
+from snakeskin.proxies import edo_oracle
 
 
 """

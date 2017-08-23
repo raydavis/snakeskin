@@ -1,4 +1,4 @@
-from app import factory
+from snakeskin import factory
 
 app = factory.create_app()
 db = factory.initialize_db(app)

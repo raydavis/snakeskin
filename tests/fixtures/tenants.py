@@ -1,6 +1,6 @@
 import pytest
 
-from app.models.tenant import Tenant
+from snakeskin.models.tenant import Tenant
 
 
 @pytest.fixture
