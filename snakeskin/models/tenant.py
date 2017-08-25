@@ -1,4 +1,4 @@
-from snakeskin import db
+from snakeskin.db import db
 from snakeskin.models.base import Base
 from snakeskin.proxies import canvas
 
@@ -38,4 +38,7 @@ class Tenant(Base):
 
     def get_user_profile(self, user):
         response = canvas.get_user_for_sis_id(self, user.external_id)
-        return response.json()
+        if response:
+            return response.json()
+        else:
+            return None

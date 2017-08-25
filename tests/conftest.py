@@ -1,7 +1,8 @@
 import os
 import subprocess
 
-from snakeskin import factory
+import snakeskin.db
+import snakeskin.factory
 
 from tests.fixtures.tenants import *
 
@@ -11,8 +12,7 @@ os.environ['SNAKESKIN_ENV'] = 'test'
 @pytest.fixture(scope='session')
 def app(request):
     '''Fixture application object.'''
-    _app = factory.create_app()
-    factory.register_routes(_app)
+    _app = snakeskin.factory.create_app()
 
     # Create app context before running tests.
     ctx = _app.app_context()
@@ -29,8 +29,7 @@ def app(request):
 @pytest.fixture(scope='session')
 def db(app, request):
     '''Fixture database object.'''
-    _db = factory.initialize_db(app)
-    _db.app = app
+    _db = snakeskin.db.initialize_db(app)
 
     # The psycopg2 engine doesn't handle big pg_dump files well, so shell out to load the schema. Abort the
     # transaction and test suite if the schema contains errors.

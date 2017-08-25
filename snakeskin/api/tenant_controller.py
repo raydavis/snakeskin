@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify
 
+from snakeskin.api.errors import ResourceNotFoundError
 from snakeskin.models.tenant import Tenant
 
 
@@ -13,4 +14,7 @@ def show_tenants():
 @tenant.route('/<tenant_id>')
 def show_tenant_profile(tenant_id):
     tenant = Tenant.query.filter_by(id=tenant_id).first()
+    if tenant is None:
+        raise ResourceNotFoundError('The requested tenant could not be found.')
+
     return jsonify(tenant.full_profile())

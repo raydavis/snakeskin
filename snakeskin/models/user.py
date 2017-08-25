@@ -1,6 +1,6 @@
 from sqlalchemy import sql
 
-from snakeskin import db
+from snakeskin.db import db
 from snakeskin.models.base import Base
 from snakeskin.proxies import edo_oracle
 
@@ -34,10 +34,17 @@ class User(Base):
         }
 
     def full_profile(self):
-        profile = self.tenant.get_user_profile(self)
-        profile.update(edo_oracle.get_bio_data(self.external_id))
-        profile.update(self.short_profile())
+        profile = {}
 
+        canvas_user_profile = self.tenant.get_user_profile(self)
+        if canvas_user_profile:
+            profile.update(canvas_user_profile)
+
+        oracle_bio_data = edo_oracle.get_bio_data(self.external_id)
+        if oracle_bio_data:
+            profile.update(oracle_bio_data)
+
+        profile.update(self.short_profile())
         return profile
 
     def get_data_sources(self):

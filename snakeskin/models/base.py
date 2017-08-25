@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from snakeskin import db
+from snakeskin.db import db
 
 
 """

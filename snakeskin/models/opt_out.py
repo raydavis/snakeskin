@@ -1,4 +1,4 @@
-from snakeskin import db
+from snakeskin.db import db
 from snakeskin.models.base import Base
 
 
