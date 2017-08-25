@@ -1,6 +1,8 @@
 import requests
 import urllib
 
+from flask import current_app as app
+
 
 def get_user_for_sis_id(canvas_instance, sis_id):
     path = '/api/v1/users/sis_user_id:UID:{}'.format(sis_id)
@@ -18,5 +20,11 @@ def request(canvas_instance, path):
     ])
     auth_headers = {'Authorization': 'Bearer {}'.format(canvas_instance.token)}
 
-    response = requests.get(url, headers=auth_headers)
-    return response
+    try:
+        response = requests.get(url, headers=auth_headers)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as e:
+        app.logger.error(e)
+        return None
+    else:
+        return response

@@ -1,9 +1,6 @@
 import os
 
 
-# Development environment.
-DEBUG = True
-
 # Base directory.
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -26,3 +23,6 @@ EDO_ORACLE_PORT = ''
 EDO_ORACLE_SID = ''
 EDO_ORACLE_USERNAME = ''
 EDO_ORACLE_PASSWORD = ''
+
+HOST = '0.0.0.0'
+PORT = 5000
