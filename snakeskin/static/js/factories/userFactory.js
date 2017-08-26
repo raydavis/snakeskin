@@ -3,6 +3,10 @@
 	'use strict';
 
 	angular.module('snakeskin').factory('userFactory', function($http) {
+		var getUserCanvasProfile = function(tenantId, userId) {
+	    return $http.get('/api/tenant/' + tenantId + '/user/' + userId + '/canvas_profile');
+		};
+
 		var getUserDataSources = function(tenantId, userId) {
 	    return $http.get('/api/tenant/' + tenantId + '/user/' + userId + '/data_sources');
 		};
@@ -24,6 +28,7 @@
 		};
 
 	  return {
+	  	'getUserCanvasProfile': getUserCanvasProfile,
 	  	'getUserDataSources': getUserDataSources,
 	    'getUserProfile': getUserProfile,
 	  	'getUserRecentActivities': getUserRecentActivities,

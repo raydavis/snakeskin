@@ -13,6 +13,7 @@ THREADS_PER_PAGE = 2
 # Some defaults.
 CSRF_ENABLED = True
 CSRF_SESSION_KEY = "secret"
+# Used to encrypt session cookie.
 SECRET_KEY = "secret"
 
 # Override in local configs.
@@ -26,3 +27,6 @@ EDO_ORACLE_PASSWORD = ''
 
 HOST = '0.0.0.0'
 PORT = 5000
+
+DEVELOPER_AUTH_ENABLED = False
+DEVELOPER_AUTH_PASSWORD = "another secret"

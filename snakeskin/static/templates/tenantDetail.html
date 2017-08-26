@@ -25,4 +25,20 @@
       </li>
     </ul>
   </div>
+  <div>
+    Or enter an external ID:
+    <form data-ng-submit="lookupCanvasUser()">
+      <div>
+        <label for="new-user-id">External UID: </label>
+        <input name="new-user-id" id="new-user-id" placeholder="Enter UID here" data-ng-model="newUser.externalId" type="text">
+      </div>
+      <div>
+        <button class="cc-button cc-button-blue" data-ng-disabled="!newUser.externalId" type="submit">Look Up</button>
+      </div>
+    </form>
+    <div data-ng-if="newUser.canvasProfile">
+      <div>Canvas Profile :</div>
+      <pre>{{newUser.canvasProfile | json}}</pre>
+    </div>
+  </div>
 </div>

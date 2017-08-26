@@ -7,6 +7,12 @@ from snakeskin.proxies import canvas
 The `tenants` table tracks the top-level integrated environments which have data in the Learning Record Store.
 A tenant incorporates a set of users, data sources, data consumers, and learning record statements.
 Examples: "UC Berkeley", "Stanford", "UCB Test Data".
+
+TODO This iniital sandbox-schema mixes the LRS Tenant model with a Canvas Data Source model. Instead, a given
+Tenant might have multiple Canvas Data Sources, or have no designated Canvas Data Source at all. For example,
+the "UC Berkeley QA" environment will contain only one User with an external ID of "211159", but LRS statements
+referring to that QA-environment user may come from Beta, Test, or developer-specific Canvas instances, each
+with its own unique LRS Credential.
 """
 class Tenant(Base):
     __tablename__ = 'tenants'

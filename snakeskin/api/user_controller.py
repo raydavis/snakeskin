@@ -22,6 +22,15 @@ def show_user_profile(tenant_id, external_id):
         'user': g.user.full_profile()
     })
 
+@user.route('/canvas_profile')
+def show_canvas_profile(tenant_id, external_id):
+    tenant = Tenant.query.filter_by(id=tenant_id).first()
+    response = canvas.get_user_for_sis_id(tenant, external_id)
+    if response.status_code == 200:
+        return response.content
+    else:
+        return '{"status": "unknown"}'
+
 @user.route('/data_sources')
 def show_user_data_sources(tenant_id, external_id):
     result = g.user.get_data_sources()
