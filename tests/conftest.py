@@ -8,10 +8,14 @@ from tests.fixtures.tenants import *
 
 os.environ['SNAKESKIN_ENV'] = 'test'
 
+# Because app and db fixtures are only created once per pytest run, individual tests
+# are not able to modify application configuration values before the app is created.
+# Per-test customizations could be supported via a fixture scope of 'function' and
+# the @pytest.mark.parametrize annotation.
 
 @pytest.fixture(scope='session')
 def app(request):
-    '''Fixture application object.'''
+    '''Fixture application object, shared by all tests.'''
     _app = snakeskin.factory.create_app()
 
     # Create app context before running tests.
@@ -28,7 +32,7 @@ def app(request):
 
 @pytest.fixture(scope='session')
 def db(app, request):
-    '''Fixture database object.'''
+    '''Fixture database object, shared by all tests.'''
     _db = snakeskin.db.initialize_db(app)
 
     # The psycopg2 engine doesn't handle big pg_dump files well, so shell out to load the schema. Abort the
