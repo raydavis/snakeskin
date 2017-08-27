@@ -9,6 +9,12 @@ def register_routes(app):
     from snakeskin.api.user_controller import user
     app.register_blueprint(tenant)
     app.register_blueprint(user)
+    import snakeskin.api.status_controller
+
+    # Register authentication modules.
+    from snakeskin.auth.authorized_user import login_manager
+    login_manager.init_app(app)
+    import snakeskin.auth.dev_auth
 
     # Error handling.
     import snakeskin.api.errors
