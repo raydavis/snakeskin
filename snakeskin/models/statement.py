@@ -28,7 +28,7 @@ class Statement(Base):
     user = db.relationship('User', backref=db.backref('statements', lazy='dynamic'))
 
     def __init__(self, uuid, statement, verb, timestamp, activity_type, actor_type, statement_type, statement_version, voided, tenant, credential, user):
-        self.name = name
+        # self.name = name
         self.uuid = uuid
         self.statement = statement
         self.verb = verb
