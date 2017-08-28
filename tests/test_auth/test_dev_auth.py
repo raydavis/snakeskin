@@ -7,9 +7,9 @@ class TestDevAuth:
         '''blocks access unless enabled'''
         app.config['DEVELOPER_AUTH_ENABLED'] = False
         response = client.get('/devauth/login')
-        assert response.status_code == 403
+        assert response.status_code == 404
         response = client.post('/devauth/login', data={'uid': self.authorized_uid, 'password': app.config['DEVELOPER_AUTH_PASSWORD']})
-        assert response.status_code == 403
+        assert response.status_code == 404
 
     def test_enabled(self, app, client):
         '''supports login forms when enabled'''

@@ -29,7 +29,7 @@ def handle_unauthorized(error):
     return error.to_json(), 401
 
 @app.errorhandler(ForbiddenRequestError)
-def handle_resource_not_found(error):
+def handle_forbidden(error):
     return error.to_json(), 403
 
 @app.errorhandler(ResourceNotFoundError)

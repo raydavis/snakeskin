@@ -1,9 +1,10 @@
 from flask import (
-    abort, current_app, flash, redirect, request,
+    current_app, flash, redirect, request,
 )
 from flask_login import (
     login_required, login_user, logout_user
 )
+from ..api.errors import ForbiddenRequestError, ResourceNotFoundError
 from . import authorized_user
 
 @current_app.route('/devauth/login', methods=['GET', 'POST'])
@@ -13,12 +14,12 @@ def login():
         if request.method == 'POST':
             if request.form['password'] != current_app.config['DEVELOPER_AUTH_PASSWORD']:
                 logger.error('Wrong password entered in Developer Auth')
-                return abort(403)
+                raise ForbiddenRequestError('Wrong credentials')
             user_id = request.form['uid']
             user = authorized_user.load_user(user_id)
             if user is None:
                 logger.error('Unauthorized user ID {} entered in Developer Auth'.format(user_id))
-                return abort(403)
+                raise ForbiddenRequestError('Unknown account')
             logger.info('Developer Auth used to log in as UID {}'.format(user_id))
             login_user(user)
             flash('Logged in successfully.')
@@ -32,7 +33,7 @@ def login():
                 </form>
             '''
     else:
-        abort(403)
+        raise ResourceNotFoundError('Unknown path')
 
 @current_app.route("/logout")
 @login_required
