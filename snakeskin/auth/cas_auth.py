@@ -6,8 +6,7 @@ from flask_login import (
 )
 import cas
 
-from ..api.errors import ForbiddenRequestError
-from . import authorized_user
+from snakeskin.api.errors import ForbiddenRequestError
 
 @current_app.route('/cas/login', methods=['GET', 'POST'])
 def cas_login():
@@ -22,8 +21,8 @@ def cas_login():
     if 'ticket' in request.args:
         ticket = request.args['ticket']
         user_id, attributes, proxy_granting_ticket = client.verify_ticket(ticket)
-        logger.info('Logged into CAS as user ' + user_id + ', with attributes ' + repr(attributes))
-        user = authorized_user.load_user(user_id)
+        logger.info('Logged into CAS as user {} with attributes {}'.format(user_id, repr(attributes)))
+        user = current_app.login_manager.user_callback(user_id)
         if user is None:
             logger.error('Unauthorized UID {}'.format(user_id))
             raise ForbiddenRequestError('Unknown account')
