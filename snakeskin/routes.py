@@ -15,6 +15,7 @@ def register_routes(app):
     from snakeskin.auth.authorized_user import login_manager
     login_manager.init_app(app)
     import snakeskin.auth.dev_auth
+    import snakeskin.auth.cas_auth
 
     # Error handling.
     import snakeskin.api.errors

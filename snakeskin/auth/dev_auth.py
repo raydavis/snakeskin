@@ -8,7 +8,7 @@ from ..api.errors import ForbiddenRequestError, ResourceNotFoundError
 from . import authorized_user
 
 @current_app.route('/devauth/login', methods=['GET', 'POST'])
-def login():
+def dev_login():
     logger = current_app.logger
     if current_app.config['DEVELOPER_AUTH_ENABLED']:
         if request.method == 'POST':
